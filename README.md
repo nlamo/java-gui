@@ -1,3 +1,3 @@
 # php-basics
 
-# PHP tutorial course taught by Brad Traversy
+PHP tutorial course taught by Brad Traversy
