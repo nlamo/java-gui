@@ -1,9 +1,10 @@
+package view;
+import model.DatabaseClass;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 public class GUI implements ActionListener {
@@ -31,7 +32,7 @@ public class GUI implements ActionListener {
     // Submit button
     JButton submitHumanProperties = new JButton("Submit");
 
-    GUI() {
+    public GUI() {
 
         // Creating new frame
         JFrame jframe = new JFrame("Tutorial Swing Application");
@@ -156,17 +157,17 @@ public class GUI implements ActionListener {
     }
 
     // Button event handling
-    // Will contain all of the logic for any buttons contained within this file until I refactor it into
-    // Multiple different files
+
+    // This will eventually be refactored as it becomes larger and more buttons are added.
     public void actionPerformed(ActionEvent ae) {
 
         if (ae.getActionCommand().equals("Submit")) {
 
             System.out.println("Button is responding.");
 
-            // TODO: Solve the AUTO INCREMENT issue with insertion into database
+            // TODO: Solve the AUTO INCREMENT issue with insertion into database.
             // All of the the JTextField entries being added to the SQL query, readied for insertion
-            String userInsert = "INSERT INTO users VALUES (3, '" + userNameText.getText() + "', " + userHeightText.getText()
+            String userInsert = "INSERT INTO users VALUES (5, '" + userNameText.getText() + "', " + userHeightText.getText()
                                  + ", " + userWeightText.getText() + ", '" + userProgLangPrefText.getText() + "')";
 
             // Connect to database, execute user information insertion query, close database
@@ -175,16 +176,24 @@ public class GUI implements ActionListener {
                 Statement sttmnt = null;
 
                 databaseConnection = DatabaseClass.connectToDatabase();
-                System.out.println("Database connection established.");
+
+                // If the database isn't closed, then it's running
+                if (!databaseConnection.isClosed()) {
+                    System.out.println("Database connection established.");
+                }
 
                 sttmnt = databaseConnection.createStatement();
                 sttmnt.executeUpdate(userInsert);
                 System.out.println("Values have been successfully inserted!");
 
                 databaseConnection.close();
-                System.out.println("Database connection closed.");
 
-            } catch (Exception e) {
+                // If it's closed, then we let you know
+                if (databaseConnection.isClosed()) {
+                    System.out.println("Database connection closed.");
+                }
+            }
+            catch (Exception e) {
                 e.printStackTrace();
             }
         }

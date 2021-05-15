@@ -1,3 +1,4 @@
+package model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -7,7 +8,7 @@ public class DatabaseClass {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/first_java_gui", "user", "password");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/first_java_gui", "root", "h3lbd3nmanny");
             System.out.println("You have successfully connected to your database.");
 
             return connection;
