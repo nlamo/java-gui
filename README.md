@@ -1,3 +1,3 @@
-# php-basics
+# java-gui
 
-PHP tutorial course taught by Brad Traversy
+Basic Java GUI that I'm using to connect to a MySQL database.
