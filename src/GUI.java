@@ -166,7 +166,7 @@ public class GUI implements ActionListener {
 
             // TODO: Solve the AUTO INCREMENT issue with insertion into database
             // All of the the JTextField entries being added to the SQL query, readied for insertion
-            String userInsert = "INSERT INTO users VALUES (1, '" + userNameText.getText() + "', " + userHeightText.getText()
+            String userInsert = "INSERT INTO users VALUES (2, '" + userNameText.getText() + "', " + userHeightText.getText()
                                  + ", " + userWeightText.getText() + ", '" + userProgLangPrefText.getText() + "')";
 
             // Connect to database, execute user information insertion query, close database
@@ -175,11 +175,14 @@ public class GUI implements ActionListener {
                 Statement sttmnt = null;
 
                 databaseConnection = DatabaseClass.connectToDatabase();
+                System.out.println("Database connection established.");
+
                 sttmnt = databaseConnection.createStatement();
-
                 sttmnt.executeUpdate(userInsert);
-
                 System.out.println("Values have been successfully inserted!");
+
+                databaseConnection.close();
+                System.out.println("Database connection closed.");
 
             } catch (Exception e) {
                 e.printStackTrace();
