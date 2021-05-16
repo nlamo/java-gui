@@ -6,6 +6,8 @@ The user has the option to input their name, height, weight, and programming lan
 
 The 'Submit' button can be used to add all of these properties to a local database.
 
+The 'Delete' button can be used to delete a given user from the local database.
+
 TODO:
 
 - Start working on a user login screen
