@@ -8,7 +8,6 @@ The 'Submit' button can be used to add all of these properties to a local databa
 
 TODO:
 
-- Figure out how to properly implement the controller, other than just encapsulating the GUI creation
 - Fix auto-increment issue for the 'Submit' button (insertions)
 - Start working on a user login screen
 - Add the ability for users to delete data
