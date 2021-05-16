@@ -1,13 +1,14 @@
 package view;
-import model.DatabaseClass;
+import controller.ControllerClass;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.Statement;
 
 public class GUI implements ActionListener {
+
+    // Our controller class, which is tightly coupled with the GUI
+    ControllerClass controller = new ControllerClass();
 
     // Top label
     JLabel jlabel = new JLabel("*** Personal Information ***");
@@ -157,7 +158,6 @@ public class GUI implements ActionListener {
     }
 
     // Button event handling
-
     // This will eventually be refactored as it becomes larger and more buttons are added.
     public void actionPerformed(ActionEvent ae) {
 
@@ -165,37 +165,8 @@ public class GUI implements ActionListener {
 
             System.out.println("Button is responding.");
 
-            // TODO: Solve the AUTO INCREMENT issue with insertion into database.
-            // All of the the JTextField entries being added to the SQL query, readied for insertion
-            String userInsert = "INSERT INTO users VALUES (5, '" + userNameText.getText() + "', " + userHeightText.getText()
-                                 + ", " + userWeightText.getText() + ", '" + userProgLangPrefText.getText() + "')";
+            controller.insertUser(userNameText,userHeightText, userWeightText, userProgLangPrefText);
 
-            // Connect to database, execute user information insertion query, close database
-            try {
-                Connection databaseConnection = null;
-                Statement sttmnt = null;
-
-                databaseConnection = DatabaseClass.connectToDatabase();
-
-                // If the database isn't closed, then it's running
-                if (!databaseConnection.isClosed()) {
-                    System.out.println("Database connection established.");
-                }
-
-                sttmnt = databaseConnection.createStatement();
-                sttmnt.executeUpdate(userInsert);
-                System.out.println("Values have been successfully inserted!");
-
-                databaseConnection.close();
-
-                // If it's closed, then we let you know
-                if (databaseConnection.isClosed()) {
-                    System.out.println("Database connection closed.");
-                }
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
         }
     }
 }
