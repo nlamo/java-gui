@@ -30,13 +30,18 @@ public class GUI implements ActionListener {
     JLabel userProgLangPref = new JLabel("Please enter your favourite programming language:");
     JTextField userProgLangPrefText = new JTextField(6);
 
-    // Submit button
-    JButton submitHumanProperties = new JButton("Submit");
+    // Submit user - button
+    JButton submitUser = new JButton("Submit User");
+
+    // Delete user
+    JLabel deleteUserLabel = new JLabel("To delete a user, please enter a surname: ");
+    JTextField deleteUserText = new JTextField(6);
+    JButton deleteUser = new JButton("Delete User");
 
     public GUI() {
 
         // Creating new frame
-        JFrame jframe = new JFrame("Tutorial Swing Application");
+        JFrame jframe = new JFrame("Java GUI");
 
         // Creating a GridBagLayout
         GridBagLayout mainLayout = new GridBagLayout();
@@ -149,24 +154,57 @@ public class GUI implements ActionListener {
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.gridx = 0;
         constraints.gridy = 15;
-        userPanel.add(submitHumanProperties, constraints);
+        userPanel.add(submitUser, constraints);
 
-        submitHumanProperties.addActionListener(this);
+        emptyLabel = new JLabel(" ");
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.gridx = 0;
+        constraints.gridy = 16;
+        userPanel.add(emptyLabel, constraints);
+
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.gridx = 0;
+        constraints.gridy = 17;
+        userPanel.add(deleteUserLabel, constraints);
+
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.gridx = 0;
+        constraints.gridy = 18;
+        userPanel.add(deleteUserText, constraints);
+
+        emptyLabel = new JLabel(" ");
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.gridx = 0;
+        constraints.gridy = 19;
+        userPanel.add(emptyLabel, constraints);
+
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.gridx = 0;
+        constraints.gridy = 20;
+        userPanel.add(deleteUser, constraints);
+
+        submitUser.addActionListener(this);
+        deleteUser.addActionListener(this);
 
         // actually show the frame (window)
         jframe.setVisible(true);
     }
 
     // Button event handling
-    // This will eventually be refactored as it becomes larger and more buttons are added.
     public void actionPerformed(ActionEvent ae) {
 
-        if (ae.getActionCommand().equals("Submit")) {
+        if (ae.getActionCommand().equals("Submit User")) {
 
             System.out.println("Button is responding.");
 
-            controller.insertUser(userNameText,userHeightText, userWeightText, userProgLangPrefText);
+            controller.insertUser(userNameText, userHeightText, userWeightText, userProgLangPrefText);
+        }
 
+        if (ae.getActionCommand().equals("Delete User")) {
+
+            System.out.println("Button is responding");
+
+            controller.deleteUser(deleteUserText);
         }
     }
 }

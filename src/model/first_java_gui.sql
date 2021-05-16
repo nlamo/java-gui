@@ -10,3 +10,6 @@ CREATE TABLE `users` (
 `programming_pref` VARCHAR(25),
 PRIMARY KEY (user_ID)
 );
+
+SELECT * FROM `users`;
+DELETE FROM `users` WHERE `user_ID` = 7;

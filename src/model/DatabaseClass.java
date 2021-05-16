@@ -9,7 +9,6 @@ public class DatabaseClass {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/first_java_gui", "username", "password");
-            System.out.println("You have successfully connected to your database.");
 
             return connection;
         }

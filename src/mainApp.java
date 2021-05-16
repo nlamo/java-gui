@@ -14,8 +14,10 @@ import view.GUI;
 
 import javax.swing.*;
 
-// TODO: Separate chunk - make a login page for a user. No need for serious authentication/hashing.. yet.
-// TODO: Make a 'Delete' button that will remove data from SQL database given certain inputs (e.g. name).
+// TODO: Maybe refactor some of the repeating database-logic-related code in the controller
+//       so that I can have smaller functions, of course.
+
+// TODO: Make a login page for a user. No need for serious authentication/hashing.. yet.
 // TODO: Eventually, make an interface that will display certain kinds of data based on inputs.
 
 public class mainApp {
